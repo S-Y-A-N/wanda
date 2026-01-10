@@ -22,7 +22,7 @@ def get_llm(model_name, cache_dir="llm_weights"):
         device_map="auto"
     )
 
-    model.seqlen = model.config.max_position_embeddings
+    model.seqlen = min(model.config.max_position_embeddings, 8192)
     print('model.seqlen =', model.seqlen)
     return model
 
